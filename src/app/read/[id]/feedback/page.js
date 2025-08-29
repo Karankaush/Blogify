@@ -23,12 +23,12 @@ export default async function ReadBlog({ params }) {
         </p>
 
         <div className="flex justify-end gap-4">
-          <Link
+          {/* <Link
             href={`/edit/${id}`}
             className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-lg shadow-md transition"
           >
             Edit
-          </Link>
+          </Link> */}
 
           
          

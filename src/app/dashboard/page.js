@@ -23,17 +23,17 @@ export default function Dashboard() {
   }
 
   if (status === "unauthenticated") {
-    window.location.href = '/login'
-    // return (
-    //   <div className="flex justify-center items-center min-h-screen">
-    //     <Link
-    //       href="/login"
-    //       className="text-blue-600 hover:text-blue-800 font-medium"
-    //     >
-    //       Please login first
-    //     </Link>
-    //   </div>
-    // );
+    // window.location.href = '/login'
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <Link
+          href="/login"
+          className="text-blue-600 hover:text-blue-800 font-medium"
+        >
+          Please login first
+        </Link>
+      </div>
+    );
   }
 
   const id = session.user.id;
@@ -78,7 +78,7 @@ export default function Dashboard() {
           <h1 className="text-3xl font-bold text-gray-800 mb-3">
             Welcome, {session.user.name} 🎉
           </h1>
-          <p className="text-gray-600 text-lg">Email: {session.user.email}</p>
+          {/* <p className="text-gray-600 text-lg">Email: {session.user.name}</p> */}
           
           <button
             onClick={() => signOut()}

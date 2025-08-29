@@ -63,8 +63,28 @@ export default function MyBlogs() {
                   <span className="text-xs text-gray-400">
                     Views: {blog.views ?? 0}
                   </span>
-                  
+
+               
+
                 </div>
+
+                 <div className="mt-4 flex gap-18">
+                  <form >
+                    <button type="submit" className="cursor-pointer" >
+                        👍 {blog.likes}
+                    </button>
+                </form>
+
+                    <form>
+                        <button type="submit" className="cursor-pointer" >
+                            👎{blog.disLikes}    
+                        </button>
+                    </form>
+                  
+                  </div>
+
+
+
               </div>
             ))}
           </div>
