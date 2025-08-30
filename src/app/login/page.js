@@ -23,7 +23,7 @@ export default function LoginPage() {
     if (res?.error) {
       setError(res.error);
     } else {
-      window.location.href = "/dashboard";
+      window.location.href = "/";
     }
   }
 
