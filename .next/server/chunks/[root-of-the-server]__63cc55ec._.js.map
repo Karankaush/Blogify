@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
-    {"offset": {"line": 43, "column": 0}, "map": {"version":3,"sources":["file:///D:/stacky%20patel%20next%20js/GPT%20next%20project/nextauth-demo/src/app/api/users/%5Bid%5D/update/route.js"],"sourcesContent":["export async function GET(req, {params}) {\n  const id  = ((await params).id);\n\n  await connectDB();\n\n  const user = await User.findById(id);\n\n  if(!user){\n    return new Response(\"User not found\", {status: 404});\n  }\n\n  return new Response(JSON.stringify(user), {status: 200});\n\n\n\n\n  \n\n}\n\n\n\n\n\n"],"names":[],"mappings":";;;;AAAO,eAAe,IAAI,GAAG,EAAE,EAAC,MAAM,EAAC;IACrC,MAAM,KAAO,CAAC,MAAM,MAAM,EAAE,EAAE;IAE9B,MAAM;IAEN,MAAM,OAAO,MAAM,KAAK,QAAQ,CAAC;IAEjC,IAAG,CAAC,MAAK;QACP,OAAO,IAAI,SAAS,kBAAkB;YAAC,QAAQ;QAAG;IACpD;IAEA,OAAO,IAAI,SAAS,KAAK,SAAS,CAAC,OAAO;QAAC,QAAQ;IAAG;AAOxD","debugId":null}}]
-}

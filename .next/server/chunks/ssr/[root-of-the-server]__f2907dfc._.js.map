@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
-    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///D:/stacky%20patel%20next%20js/GPT%20next%20project/nextauth-demo/src/app/feed/page.js"],"sourcesContent":["\n\nexport default function ViewFeed(){\n    return(\n        <>\n        <div>\n            Hello\n        </div>\n        </>\n    )\n}"],"names":[],"mappings":";;;;;;AAEe,SAAS;IACpB,qBACI;kBACA,cAAA,8OAAC;sBAAI;;;;;;;AAKb","debugId":null}}]
-}

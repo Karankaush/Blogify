@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
-    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///D:/stacky%20patel%20next%20js/GPT%20next%20project/nextauth-demo/src/app/read/%5Bid%5D/page.js"],"sourcesContent":["import React from 'react'\n\nexport default async function ReadBlog({params}) {\n\n    const id = params.id;\n\n\n  return (\n    <>\n    <h1>{id}</h1>\n    </>\n  );\n}"],"names":[],"mappings":";;;;;AAAA;;;AAEe,eAAe,SAAS,EAAC,MAAM,EAAC;IAE3C,MAAM,KAAK,OAAO,EAAE;IAGtB,qBACE;kBACA,cAAA,8OAAC;sBAAI;;;;;;;AAGT","debugId":null}}]
-}

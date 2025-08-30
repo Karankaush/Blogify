@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///D:/stacky%20patel%20next%20js/GPT%20next%20project/nextauth-demo/src/app/dashboard/page.js"],"sourcesContent":["\"use client\";\nimport { useSession, signOut } from \"next-auth/react\";\n\nexport default function Dashboard() {\n  const { data: session } = useSession();\n\n  if (!session) return Link\n\n  return (\n    <div>\n      <h1>Welcome {session.user.name}</h1>\n      <p>Email: {session.user.email}</p>\n      <button onClick={() => signOut()}>Logout</button>\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;AACA;AADA;;;AAGe,SAAS;IACtB,MAAM,EAAE,MAAM,OAAO,EAAE,GAAG,IAAA,4JAAU;IAEpC,IAAI,CAAC,SAAS,OAAO;IAErB,qBACE,8OAAC;;0BACC,8OAAC;;oBAAG;oBAAS,QAAQ,IAAI,CAAC,IAAI;;;;;;;0BAC9B,8OAAC;;oBAAE;oBAAQ,QAAQ,IAAI,CAAC,KAAK;;;;;;;0BAC7B,8OAAC;gBAAO,SAAS,IAAM,IAAA,yJAAO;0BAAI;;;;;;;;;;;;AAGxC","debugId":null}}]
-}
