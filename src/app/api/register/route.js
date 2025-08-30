@@ -7,6 +7,10 @@ export async function POST(req){
         const {name, email, password} = await req.json();
         await connectDB();
 
+       const isAlreadyUser = await User.findOne({ email });
+    if (isAlreadyUser) {
+       return Response.json({success : false, message: "User Already Registered "});
+    }
         const hashedPassword = await bcrypt.hash(password, 10);
 
 
@@ -18,7 +22,7 @@ export async function POST(req){
 
         await user.save();
         
-        return Response.json({message: "User registered successfully"}, {status: 201});
+        return Response.json({success : true, message: "User registered successfully"}, {status: 201});
     }
     catch(err){
         return new Response(JSON.stringify({error: "Invalid request"}), {status: 400});

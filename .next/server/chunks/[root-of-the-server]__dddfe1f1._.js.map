@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 43, "column": 0}, "map": {"version":3,"sources":["file:///D:/stacky%20patel%20next%20js/GPT%20next%20project/nextauth-demo/src/app/api/view/route.js"],"sourcesContent":["import React from 'react'\n\nconst route = () => {\n  return (\n    <div>\n      \n    </div>\n  )\n}\n\nexport default route\n"],"names":[],"mappings":";;;;;AAAA;;;AAEA,MAAM,QAAQ;IACZ,qBACE,gPAAC;;;;;AAIL;uCAEe","debugId":null}}]
+}

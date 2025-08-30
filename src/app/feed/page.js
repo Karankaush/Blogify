@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import useSWR, { mutate } from "swr";
 
-// ✅ SWR fetcher
+
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 export default function ViewFeed() {
@@ -20,7 +20,7 @@ export default function ViewFeed() {
 
   const blogs = data?.allBlogs || [];
 
-  // ✅ Like
+
   async function handleLike(id) {
     try {
       const res = await axios.post(`/api/blogs/${id}/like`);
@@ -156,14 +156,14 @@ export default function ViewFeed() {
                 <div className="flex justify-start gap-6">
                   <button
                     onClick={() => handleLike(blog._id)}
-                    className="flex items-center gap-2 text-gray-700 hover:text-green-600 transition transform hover:scale-110"
+                    className="cursor-pointer flex items-center gap-2 text-gray-700 hover:text-green-600 transition transform hover:scale-110"
                   >
                     👍 <span>{blog.likes ?? 0}</span>
                   </button>
 
                   <button
                     onClick={() => handleDisLike(blog._id)}
-                    className="flex items-center gap-2 text-gray-700 hover:text-red-600 transition transform hover:scale-110"
+                    className="cursor-pointer flex items-center gap-2 text-gray-700 hover:text-red-600 transition transform hover:scale-110"
                   >
                     👎 <span>{blog.dislikes ?? 0}</span>
                   </button>

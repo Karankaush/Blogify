@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Blog System with Authentication and MongoDB Atlas
 
-## Getting Started
+A full-stack blog system built with **Next.js**, **NextAuth.js**, and **MongoDB Atlas**.  
+Users can register, login, create, update, delete, and view their own blogs. The project uses SWR for **frontend caching and automatic data revalidation**.
 
-First, run the development server:
+---
+
+## Features
+
+- **User Authentication**  
+  - Registration and login with secure password handling.  
+  - Session management via NextAuth.js.  
+
+- **Blog Management (CRUD)**  
+  - Create, read, update, and delete blogs.  
+  - Each user sees only their own blogs.  
+
+- **Frontend Features**  
+  - Responsive UI built with **Tailwind CSS**.  
+  - SWR used for efficient fetching and caching of blog data.  
+  - Dynamic dashboard showing user-specific blogs.  
+
+- **Backend Features**  
+  - API routes in Next.js for all CRUD operations.  
+  - MongoDB Atlas for cloud database storage.  
+  - Authentication-protected routes.  
+
+- **Additional Features**  
+  - Likes, dislikes, and view count tracking for each blog.  
+  - Automatic session updates on profile changes.  
+  - Error handling and user-friendly messages.
+
+---
+
+## Tech Stack
+
+- **Frontend:** Next.js 13 (App Router), React, Tailwind CSS, SWR  
+- **Backend:** Next.js API Routes, NextAuth.js  
+- **Database:** MongoDB Atlas (cloud-based)  
+- **Authentication:** NextAuth.js with session handling  
+
+---
+
+
+Folder structure
+
+src/
+├── app/
+│   ├── dashboard/          # User dashboard page
+│   ├── edit/               # Blog edit page
+│   ├── feed/               # Feed page (all blogs)
+│   ├── login/              # Login page
+│   ├── read/               # Individual blog read page
+│   ├── register/           # User registration page
+│   ├── viewBlogs/          # User-specific blogs page
+│   ├── api/                # All API routes
+│   │   ├── auth/           # NextAuth routes
+│   │   ├── blogs/          # Blog CRUD & actions
+│   │   │   ├── [id]/       # Blog ID specific actions
+│   │   │   │   ├── delete/
+│   │   │   │   ├── dislike/
+│   │   │   │   ├── edit/
+│   │   │   │   ├── incre/   # for views increment
+│   │   │   │   └── like/
+│   │   │   └── route.js     # general blogs route
+│   │   ├── users/           # User-specific API routes
+│   │   ├── view/            # Get current user blogs
+│   │   └── viewfeed/        # Public feed route
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.js
+│   ├── page.js
+│   └── provider.js
+├── config/                  # Auth config, env configs
+├── lib/                     # MongoDB connection, helpers
+├── models/                  # Mongoose models: User.js, Blog.js
+└── .env.local
+
+
+
+
+
+
+## Setup & Installation
+
+1. **Clone the repository:**
 
 ```bash
+git clone <repo-url>
+cd <project-folder>
+
+
+install dependencies
+npm install
+
+
+.env.local
+MONGO_URI=<Your MongoDB Atlas URI>
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=<A long random secret>
+GITHUB_ID=<Optional GitHub OAuth ID>
+GITHUB_SECRET=<Optional GitHub OAuth Secret>
+
+
+Run the development server:
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

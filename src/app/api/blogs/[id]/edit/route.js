@@ -6,9 +6,11 @@ export async function PUT(req, { params }) {
   try {
     await connectDB();
 
+    const id = ((await params).id);
+
     const { title, content } = await req.json();
     const updatedBlog = await Blog.findByIdAndUpdate(
-      params.id,
+      id,
       { title, content },
       { new: true }
     );

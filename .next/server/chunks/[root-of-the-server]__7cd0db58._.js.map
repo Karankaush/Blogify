@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 109, "column": 0}, "map": {"version":3,"sources":["file:///D:/stacky%20patel%20next%20js/GPT%20next%20project/nextauth-demo/src/app/api/auth/%5B...nextauth%5D/route.js"],"sourcesContent":["import NextAuth from \"next-auth\";\nimport { authOptions } from \"../../../auth\";\n\n\nconst handler = NextAuth(authOptions);\n\nexport { handler as GET, handler as POST };\n"],"names":[],"mappings":";;;;;;AAAA;;;;;;;;AAIA,MAAM,UAAU,IAAA,kJAAQ,EAAC","debugId":null}}]
+}

@@ -1,9 +1,14 @@
 'use client'
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 
 export default function RegisterPage() {
+  const router = useRouter();
+  const[message, setMessage] = useState('')
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -14,7 +19,18 @@ export default function RegisterPage() {
     e.preventDefault();
     try {
       const res = await axios.post("/api/register", form);
-      alert(res.data.message);
+      if(res.data.success){
+        const signInRes = await signIn("credentials", {
+          redirect: false,
+          email: form.email,
+          password: form.password,
+        });
+        router.push(`/`);
+      }
+      else{
+        setMessage(res.data.message)
+      }
+      
     } catch (err) {
       console.error(err);
     }
@@ -91,7 +107,7 @@ export default function RegisterPage() {
           <div className="flex justify-between gap-4 mt-4">
             <button
               type="submit"
-              className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-lg shadow-md transition"
+              className="cursor-pointer w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-lg shadow-md transition"
             >
               🚀 Register
             </button>
@@ -103,6 +119,12 @@ export default function RegisterPage() {
             </Link>
           </div>
         </form>
+
+        <div className="flex justify-center mt-2 ">
+          {message && (
+            <p className="text-red-400 w-fit p-1 rounded-md">{message}</p>
+          )}
+        </div>
 
         {/* Footer */}
         <p className="text-center text-sm text-gray-500 mt-6">

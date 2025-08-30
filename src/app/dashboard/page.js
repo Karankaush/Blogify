@@ -75,18 +75,27 @@ export default function Dashboard() {
       <div className="max-w-4xl mx-auto space-y-10">
      
         <div className="bg-white shadow-lg rounded-2xl p-8 text-center">
-          <h1 className="text-3xl font-bold text-gray-800 mb-3">
-            Welcome, {session.user.name} 🎉
-          </h1>
-          {/* <p className="text-gray-600 text-lg">Email: {session.user.name}</p> */}
-          
-          <button
-            onClick={() => signOut()}
-            className="mt-6 bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-lg shadow-md transition"
-          >
-            Logout
-          </button>
-        </div>
+  <h1 className="text-3xl font-bold text-gray-800 mb-3">
+    Welcome, {session.user.name} 🎉
+  </h1>
+
+  <div className="flex justify-center gap-5">
+    <button
+      onClick={() => signOut()}
+      className="cursor-pointer mt-6 bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-lg shadow-md transition"
+    >
+      Logout
+    </button>
+
+    <Link
+      href="/"
+      className="mt-6 inline-block bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md transition"
+    >
+      Home
+    </Link>
+  </div>
+</div>
+
 
       
         <div className="bg-white shadow-md rounded-2xl p-8">
@@ -156,10 +165,7 @@ export default function Dashboard() {
                   Delete Account
                 </button>
               </form>
-              <Link href="/"
-              className="bg-blue-500 hover:bg-blue-600 text-black px-6 py-2 rounded-lg shadow-md transition">
-                 Home</Link>
-
+              
             </div>
           </form>
         </div>
