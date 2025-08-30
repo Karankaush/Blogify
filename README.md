@@ -98,8 +98,7 @@ npm install
 MONGO_URI=<Your MongoDB Atlas URI>
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=<A long random secret>
-GITHUB_ID=<Optional GitHub OAuth ID>
-GITHUB_SECRET=<Optional GitHub OAuth Secret>
+
 
 
 Run the development server:
