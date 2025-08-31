@@ -7,8 +7,8 @@ import useSWR, { mutate } from "swr";
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
+export const dynamic = "force-dynamic";
 export default function ViewFeed() {
-  
   const router = useRouter();
   const searchParams = useSearchParams();
   const category = searchParams.get("category") || ""; 
