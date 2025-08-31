@@ -3,14 +3,22 @@ import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
 import MyBlogs from "./viewBlogs/page";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Home() {
+  
+  const { data: session, status } = useSession();
+
   const[error, setError] = useState('')
   const [message, setMessage] = useState("");
   const [form, setForm] = useState({
     title: "",
     content: "",
   });
+
+ const id = session?.user?.id;
+ console.log(id)
+
 
   async function handleCreateBlog(e) {
     e.preventDefault();
@@ -21,6 +29,7 @@ export default function Home() {
         setForm({
           title: "",
           content: "",
+          category : ""
         });
       }
     } catch (err) {
@@ -37,16 +46,15 @@ export default function Home() {
 
   return (
     <>
-      {/* Blog List */}
+
       
 
-      {/* Welcome Section */}
       <div className="max-w-5xl mx-auto px-5 mt-10">
         <h2 className="text-4xl font-bold text-gray-800 text-center mb-6">
           👋 Welcome to Our Blog App
         </h2>
 
-        {/* Blog Form */}
+       
         <form
           onSubmit={handleCreateBlog}
           className="bg-white border border-gray-200 rounded-2xl shadow-lg p-8 max-w-2xl mx-auto"
@@ -55,7 +63,7 @@ export default function Home() {
             Create a New Blog ✍️
           </h3>
 
-          {/* Title Field */}
+
           <div className="mb-5">
             <label
               className="block text-lg font-medium text-gray-600 mb-2"
@@ -73,7 +81,7 @@ export default function Home() {
             />
           </div>
 
-          {/* Content Field */}
+
           <div className="mb-5">
             <label
               className="block text-lg font-medium text-gray-600 mb-2"
@@ -91,7 +99,46 @@ export default function Home() {
             />
           </div>
 
-          {/* Submit Button */}
+
+
+
+          <div className="mb-5">
+            <label
+              className="block text-lg font-medium text-gray-600 mb-2"
+              htmlFor="category"
+            >
+              Category
+            </label>
+            <select
+              id="category"
+
+              value={form.category}
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+              onChange={(e) => setForm({ ...form, category: e.target.value })}
+              placeholder="Please select category"
+            >
+              <option value="">Select Category</option>
+              <option value="Science">Science</option>
+              <option value="Technology">Technology</option>
+              <option value="Sport">Sport</option>
+              <option value="Health">Helth</option>
+              <option value="Travel">Travel</option>
+              <option value="Food">Food</option>
+              <option value="Education">Education</option>
+              <option value="Business">Business</option>
+              <option value="Psychology">Psychology</option>
+              <option value="Politics">Politics</option>
+              <option value="Others">Others</option>
+
+            </select>
+
+
+
+          </div>
+
+
+
+
           <div className=" flex justify-evenly ">
             <button
               type="submit"
@@ -123,11 +170,19 @@ export default function Home() {
 
         {/* Auth Links */}
         <div className="flex justify-center gap-6 mt-10 mb-3">
+          {id ?(
+         <button
+      onClick={() => signOut()}
+      className="cursor-pointer bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg shadow-md transition"
+    >
+      Logout
+    </button>)
+          :( <div className="flex gap-4">
           <Link
             className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg shadow-md transition"
             href={"/register"}
           >
-            Register
+           Register
           </Link>
           <Link
             className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-lg shadow-md transition"
@@ -135,6 +190,7 @@ export default function Home() {
           >
             Login
           </Link>
+          </div>)}
 
           <Link
             className="bg-blue-500 hover:bg-purple-600 text-white px-6 py-2 rounded-lg shadow-md transition"

@@ -11,7 +11,7 @@ export async function POST(req){
             return NextResponse.json({message : "Please login to create a blog"}, {status: 401});
         }
 
-        const {title, content} = await req.json();
+        const {title, content, category} = await req.json();
 
         if(!title){
              return NextResponse.json({ success: false, message: "Title is required" },{ status: 400 }
@@ -21,6 +21,13 @@ export async function POST(req){
       return NextResponse.json( { success: false, message: "Content are required " },{ status: 400 }
       );
     }
+
+         if (!category) {
+      return NextResponse.json( { success: false, message: "Category is required " },{ status: 400 }
+      );
+    }
+
+
         await connectDB();
 
         const newBlog = new Blog({
@@ -29,7 +36,8 @@ export async function POST(req){
             views : 0,
             like : 0,
             disLike : 0,
-            userId: session.user.id
+            userId: session.user.id,
+            category
         })
          await newBlog.save();
         return NextResponse.json({message: "Blog created successfully", success: true}, {status: 201});

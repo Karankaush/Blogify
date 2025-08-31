@@ -40,6 +40,11 @@ const BlogSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId, 
     ref: "User" 
   }],
+  category :{
+    type : String,
+    enum : ["Science", "Technology", "Sport", "Health", "Travel", "Food", "Education", "Business", "Psychology", "Politics", "Others"],
+    require : true
+  },
 
 }, { timestamps: true });
 

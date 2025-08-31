@@ -3,10 +3,9 @@ import { connectDB } from "@/lib/mongodb";
 import Blog from "@/models/Blog";
 import Link from "next/link";
 
-
-
-export default async function ReadBlog({ params }) {
+export default async function ReadBlog({ params, searchParams }) {
   const id = ((await params).id);
+  const categoryFromURL = ((await searchParams).category) || "";
 
   await connectDB();
   const blog = await Blog.findById(id);
@@ -23,24 +22,14 @@ export default async function ReadBlog({ params }) {
         </p>
 
         <div className="flex justify-end gap-4">
-          
-
-          
-         
-
           <Link
-            href="/feed"
+            href={`/feed?category=${categoryFromURL}`}
             className="bg-blue-500 hover:bg-blue-600 text-black px-6 py-2 rounded-lg shadow-md transition"
           >
             Back
           </Link>
         </div>
-
-        
-
       </div>
-
-     
     </div>
   );
 }

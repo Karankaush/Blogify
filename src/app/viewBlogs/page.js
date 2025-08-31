@@ -61,16 +61,15 @@ export default function MyBlogs() {
                 </div>
 
                 <div className="mt-4 flex gap-6">
-                  <form>
-                    <button type="submit" className="cursor-pointer">
+                  
+                    <button type="submit" className="">
                       👍 {blog.likes}
                     </button>
-                  </form>
-                  <form>
-                    <button type="submit" className="cursor-pointer">
-                      👎 {blog.disLikes}
+                  
+                    <button type="submit" className="">
+                      👎 {blog.dislikes}
                     </button>
-                  </form>
+                  
                 </div>
               </div>
             ))}
