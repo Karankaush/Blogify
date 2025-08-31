@@ -41,40 +41,40 @@ Users can register, login, create, update, delete, and view their own blogs. The
 
 ---
 
-
-Folder structure
-
-src/
-├── app/
-│   ├── dashboard/          # User dashboard page
-│   ├── edit/               # Blog edit page
-│   ├── feed/               # Feed page (all blogs)
-│   ├── login/              # Login page
-│   ├── read/               # Individual blog read page
-│   ├── register/           # User registration page
-│   ├── viewBlogs/          # User-specific blogs page
-│   ├── api/                # All API routes
-│   │   ├── auth/           # NextAuth routes
-│   │   ├── blogs/          # Blog CRUD & actions
-│   │   │   ├── [id]/       # Blog ID specific actions
-│   │   │   │   ├── delete/
-│   │   │   │   ├── dislike/
-│   │   │   │   ├── edit/
-│   │   │   │   ├── incre/   # for views increment
-│   │   │   │   └── like/
-│   │   │   └── route.js     # general blogs route
-│   │   ├── users/           # User-specific API routes
-│   │   ├── view/            # Get current user blogs
-│   │   └── viewfeed/        # Public feed route
-│   ├── favicon.ico
-│   ├── globals.css
-│   ├── layout.js
-│   ├── page.js
-│   └── provider.js
-├── config/                  # Auth config, env configs
-├── lib/                     # MongoDB connection, helpers
-├── models/                  # Mongoose models: User.js, Blog.js
-└── .env.local
+    
+    Folder structure
+    
+    src/
+    ├── app/
+    │   ├── dashboard/          # User dashboard page
+    │   ├── edit/               # Blog edit page
+    │   ├── feed/               # Feed page (all blogs)
+    │   ├── login/              # Login page
+    │   ├── read/               # Individual blog read page
+    │   ├── register/           # User registration page
+    │   ├── viewBlogs/          # User-specific blogs page
+    │   ├── api/                # All API routes
+    │   │   ├── auth/           # NextAuth routes
+    │   │   ├── blogs/          # Blog CRUD & actions
+    │   │   │   ├── [id]/       # Blog ID specific actions
+    │   │   │   │   ├── delete/
+    │   │   │   │   ├── dislike/
+    │   │   │   │   ├── edit/
+    │   │   │   │   ├── incre/   # for views increment
+    │   │   │   │   └── like/
+    │   │   │   └── route.js     # general blogs route
+    │   │   ├── users/           # User-specific API routes
+    │   │   ├── view/            # Get current user blogs
+    │   │   └── viewfeed/        # Public feed route
+    │   ├── favicon.ico
+    │   ├── globals.css
+    │   ├── layout.js
+    │   ├── page.js
+    │   └── provider.js
+    ├── config/                  # Auth config, env configs
+    ├── lib/                     # MongoDB connection, helpers
+    ├── models/                  # Mongoose models: User.js, Blog.js
+    └── .env.local
 
 
 
@@ -98,8 +98,7 @@ npm install
 MONGO_URI=<Your MongoDB Atlas URI>
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=<A long random secret>
-GITHUB_ID=<Optional GitHub OAuth ID>
-GITHUB_SECRET=<Optional GitHub OAuth Secret>
+
 
 
 Run the development server:
