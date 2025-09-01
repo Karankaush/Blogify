@@ -4,7 +4,9 @@ import { NextResponse } from "next/server";
 
 
 export async function DELETE(req, {params}){
-    const id  = ((await params).id);
+
+    try{
+      const id  = ((await params).id);
     await connectDB();
 
     const user = await User.findByIdAndDelete(id);
@@ -17,4 +19,7 @@ export async function DELETE(req, {params}){
         message: "User deleted successfully",
        
       });
+    } catch(err){
+      return NextResponse({success : false, message : "User not deleted", err:err})
+    }
 }

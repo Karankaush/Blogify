@@ -22,6 +22,7 @@ export async function PUT(req, {params}) {
   }
   return NextResponse.json({
       success: true,
+      message : "User update Successfully",
       user: {
         id: user._id.toString(),
         name: user.name,

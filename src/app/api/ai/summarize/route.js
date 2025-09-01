@@ -1,3 +1,4 @@
+
 import { NextResponse } from "next/server";
 import { getGeminiModel } from "@/lib/gemini";
 
@@ -23,10 +24,15 @@ export async function POST(req) {
 
     return NextResponse.json({ success: true, summary });
   } catch (error) {
-    console.error("Summarize API Error:", error);
-    return NextResponse.json(
-      { success: false, error: "AI summarization failed" },
-      { status: 500 }
-    );
-  }
+  // console.error(" Summarize API Error:", error);
+
+  return NextResponse.json(
+    {
+      success: false,
+      error: error.message || "AI summarization failed",
+    },
+    { status: 500 }
+  );
+}
+
 }

@@ -52,7 +52,7 @@ export async function POST(req) {
 
     return NextResponse.json({ success: true, suggestedContent: aiText });
   } catch (error) {
-    console.error("Gemini error:", error);
+    // console.error("Gemini error:", error);
     return NextResponse.json(
       { success: false, error: "AI generation failed" },
       { status: 500 }

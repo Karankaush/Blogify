@@ -74,7 +74,7 @@ export default function BlogDetail({ blog, id }) {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg shadow-md transition"
+            className="cursor-pointer w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg shadow-md transition"
           >
             🚀 Update Blog
           </button>

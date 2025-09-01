@@ -1,6 +1,7 @@
 "use client";
 import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
+import { toast } from "sonner";
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -43,6 +44,7 @@ export default function Dashboard() {
     try {
       const res = await axios.put(`/api/users/${id}/update`, form);
       if (res.data.success) {
+        toast.success("User update successfully") ;
         await update({
           ...session,
           user: res.data.user,
@@ -65,7 +67,11 @@ export default function Dashboard() {
       if (res.data.success) {
         window.location.href = "/login";
       }
+      else{
+        console.log("No")
+      }
     } catch (err) {
+      console.log(res.data.message)
       console.log(err);
     }
   }
@@ -98,7 +104,7 @@ export default function Dashboard() {
 
 
       
-        <div className="bg-white shadow-md rounded-2xl p-8">
+        <div className="bg-white shadow-md rounded-2xl p-8  justify-center">
           <h2 className="text-2xl font-semibold text-gray-700 mb-6">
             Update Your Details ✍️
           </h2>
@@ -153,21 +159,26 @@ export default function Dashboard() {
             <div className="md:col-span-2 flex justify-center gap-4 ">
               <button
                 type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow-md transition"
+                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow-md transition"
               >
                 Save Changes
               </button>
-              <form onSubmit={handleDelete}>
+              
+              
+            </div>
+          </form>
+
+          <form onSubmit={handleDelete}>
                 <button
                   type="submit"
-                  className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg shadow-md transition"
+                  className=" relative left-130 bottom-10 cursor-pointer bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg shadow-md transition"
                 >
                   Delete Account
                 </button>
               </form>
-              
-            </div>
-          </form>
+
+
+
         </div>
       </div>
     </div>

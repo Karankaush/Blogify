@@ -2,8 +2,10 @@
 import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "sonner";
 import MyBlogs from "./viewBlogs/page";
 import { useSession, signOut } from "next-auth/react";
+import {Popover, PopoverContent, PopoverTrigger,} from "@/components/ui/popover"
 
 export default function Home() {
   
@@ -11,6 +13,7 @@ export default function Home() {
 
   const[error, setError] = useState('')
   const [loading, setLoading] = useState(false);
+  const [geminiError, setGeminiError] = useState("");
   const [message, setMessage] = useState("");
   const [form, setForm] = useState({
     title: "",
@@ -24,8 +27,9 @@ export default function Home() {
  console.log(id)
 
 async function handleAiSuggest() {
+  if (loading) return;
   if (!form.title.trim()) {
-    alert("⚠️ Please enter a title first!");
+     toast.error("Please Enter a Title") ;
     return;
   }
 
@@ -42,8 +46,11 @@ async function handleAiSuggest() {
       }));
     }
   } catch (err) {
-    console.error("AI Error:", err);
-    alert("Failed to fetch AI suggestion ❌");
+    setLoading(false)
+    toast.error("khud se likh le free API limit reached. Pese nhi h paid API k liye") ;
+
+    // setGeminiError("Failed to fetch AI suggestion ❌");
+    // console.error("AI Error:", err);
   }
 }
 
@@ -79,18 +86,40 @@ async function handleAiSuggest() {
       
 
       <div className="max-w-5xl mx-auto px-5 mt-10">
+         
         <h2 className="text-4xl font-bold text-gray-800 text-center mb-6">
           👋 Welcome to Our Blog App
         </h2>
+
+       
 
        
         <form
           onSubmit={handleCreateBlog}
           className="bg-white border border-gray-200 rounded-2xl shadow-lg p-8 max-w-2xl mx-auto"
         >
-          <h3 className="text-2xl font-semibold text-gray-700 mb-6 text-center">
-            Create a New Blog ✍️
-          </h3>
+
+          <div className="flex items-center justify-evenly mb-8">
+
+  <h3 className="text-2xl font-semibold text-gray-700">
+    Create a New Blog ✍️
+  </h3>
+
+
+  <Popover>
+    <PopoverTrigger className="px-4 py-2 bg-red-500 text-white rounded-md shadow hover:bg-red-600 transition cursor-pointer">
+      Important
+    </PopoverTrigger>
+    <PopoverContent  className="p-2 bg-white rounded-lg shadow-md border border-gray-200 text-center w-fit ">
+      API request is limited
+    </PopoverContent>
+  </Popover>
+</div>
+
+
+
+
+
 
 
           <div className="mb-5 ">
@@ -116,10 +145,12 @@ async function handleAiSuggest() {
           onClick={handleAiSuggest}
           disabled={loading}
           
-          className="w-[100] bg-blue-500 text-white px-2 py-2 rounded cursor-pointer"
+          className="w-[120] bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition cursor-pointer"
         >{loading ? "Generating..." : "Search AI"}</button>
             </div>
-            
+
+           
+
 
 
           </div>
@@ -141,6 +172,8 @@ async function handleAiSuggest() {
               placeholder="Write your blog content..."
             />
           </div>
+
+          
 
 
 
@@ -164,7 +197,7 @@ async function handleAiSuggest() {
               <option value="Science">Science</option>
               <option value="Technology">Technology</option>
               <option value="Sport">Sport</option>
-              <option value="Health">Helth</option>
+              <option value="Health">Health</option>
               <option value="Travel">Travel</option>
               <option value="Food">Food</option>
               <option value="Education">Education</option>

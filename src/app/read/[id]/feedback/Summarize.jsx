@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
 import axios from "axios";
+import {toast} from "sonner"
 
 export default function Summarize({ content }) {
   const [summary, setSummary] = useState("");
+  const[error, setError] = useState("")
   const [loading, setLoading] = useState(false);
 
   async function handleSummarize() {
@@ -13,9 +15,15 @@ export default function Summarize({ content }) {
       if (res.data.success) {
         setSummary(res.data.summary); // ✅ only store summary
       }
+      else{
+        setError(res.error.message)
+      }
     } catch (err) {
-      console.error("Summarize Error:", err);
-    } finally {
+  console.error("Frontend Error:",  err.message);
+   toast.error("Ab summarize bhi me hi karu API limit reached. Baad me aana" , {
+    position: "bottom-center",
+  }) ;
+} finally {
       setLoading(false);
     }
   }
@@ -66,6 +74,8 @@ export default function Summarize({ content }) {
           )}
         </button>
       </div>
+
+      <div>{error}</div>
 
       {/* Summary Section */}
       {summary && (
