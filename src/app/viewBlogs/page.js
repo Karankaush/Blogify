@@ -34,7 +34,7 @@ export default function MyBlogs() {
 
         {blogs.length > 0 && (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {blogs.map((blog) => (
+            {blogs.slice().reverse().map((blog) => (
               <div
                 key={blog._id}
                 className="group border border-gray-200 rounded-xl bg-white p-6 shadow-md hover:shadow-xl transition-shadow duration-300"

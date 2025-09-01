@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import MyBlogs from "./viewBlogs/page";
 import { useSession, signOut } from "next-auth/react";
@@ -10,6 +11,7 @@ import {Popover, PopoverContent, PopoverTrigger,} from "@/components/ui/popover"
 export default function Home() {
   
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   const[error, setError] = useState('')
   const [loading, setLoading] = useState(false);
@@ -47,7 +49,7 @@ async function handleAiSuggest() {
     }
   } catch (err) {
     setLoading(false)
-    toast.error("khud se likh le free API limit reached. Pese nhi h paid API k liye") ;
+    toast.error(" API limit reached.") ;
 
     // setGeminiError("Failed to fetch AI suggestion ❌");
     // console.error("AI Error:", err);
@@ -62,12 +64,15 @@ async function handleAiSuggest() {
       const res = await axios.post("/api/blogs", form);
       if (res.data.success) {
         setMessage(res.data.message);
+          
         setForm({
           title: "",
           content: "",
           category : ""
         });
       }
+      window.location.reload();
+
     } catch (err) {
        if (err.response) {
       // Server ne custom error bheja hai

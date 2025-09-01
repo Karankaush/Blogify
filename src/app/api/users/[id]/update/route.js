@@ -4,22 +4,41 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 
 export async function PUT(req, {params}) {
-  const id  = ((await params).id);
-  const body = await req.json();
+
+  try{
+
+    const id  = ((await params).id);
+  const {name, email, password} = await req.json();
+
+  if(!name){
+    return  NextResponse.json({success : false, message : "name required"})
+  }
+
+  if(!email){
+    return  NextResponse.json({success : false, message : "email required"})
+  }
+  if(!password){
+    return  NextResponse.json({success : false, message : "password required"})
+  }
+
+  
+
+
+
   await connectDB();
-  const password = body.password
+ 
    const hashedPassword = await bcrypt.hash(password, 10);
 
   const user = await User.findByIdAndUpdate(id, {
-    name : body.name,
-    email : body.email,
+    name ,
+    email ,
     password : hashedPassword
   }, {new: true});
 
 
-  if(!user){
-    return new Response(JSON.stringify({ success: false, message: "User not found" }), { status: 404 });
-  }
+  if (!user) {
+      return NextResponse.json({ success: false, message: "User not found" }, { status: 404 });
+    }
   return NextResponse.json({
       success: true,
       message : "User update Successfully",
@@ -29,6 +48,12 @@ export async function PUT(req, {params}) {
         email: user.email,
       }
     });
+
+  } catch(err){
+    return NextResponse.json({ success: false, error: err.message }, { status: 500 });
+
+  }
+  
 
 
 }

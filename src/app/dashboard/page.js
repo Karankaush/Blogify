@@ -46,14 +46,14 @@ export default function Dashboard() {
       if (res.data.success) {
         toast.success("User update successfully") ;
         await update({
-          ...session,
-          user: res.data.user,
+          name: res.data.user.name,
+          email : res.data.user.email,
         });
-        setForm(
-          form.name = "",
-          form.email = "",
-          form.password = ""
-        )
+        setForm({ name: "", email: "", password: "" });
+
+      }
+      else{
+        toast.error(res.data.message)
       }
     } catch (err) {
       console.log(err);
@@ -68,7 +68,7 @@ export default function Dashboard() {
         window.location.href = "/login";
       }
       else{
-        console.log("No")
+        console.log(res.data.message)
       }
     } catch (err) {
       console.log(res.data.message)
@@ -135,6 +135,7 @@ export default function Dashboard() {
                 Email
               </label>
               <input
+              
                 className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                 placeholder="New email"
                 value={form.email}
@@ -149,6 +150,7 @@ export default function Dashboard() {
                 Password
               </label>
               <input
+              type="password"
                 className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                 placeholder="New password"
                 value={form.password}

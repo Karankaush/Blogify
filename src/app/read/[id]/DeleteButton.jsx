@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 export default function DeleteButton({ id }) {
@@ -9,7 +10,7 @@ export default function DeleteButton({ id }) {
   const handleDelete = async () => {
     try {
      const res =  await axios.delete(`/api/blogs/${id}/delete`);
-     setMessage(res.data.message);
+     toast.success("Blog deleted successfully") ;
 
       router.push("/"); // delete ke baad homepage pe bhej de
     } catch (err) {

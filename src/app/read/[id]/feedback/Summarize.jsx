@@ -20,7 +20,7 @@ export default function Summarize({ content }) {
       }
     } catch (err) {
   console.error("Frontend Error:",  err.message);
-   toast.error("Ab summarize bhi me hi karu API limit reached. Baad me aana" , {
+   toast.error(" API limit reached." , {
     position: "bottom-center",
   }) ;
 } finally {
