@@ -11,7 +11,7 @@ export async function POST(req){
             return NextResponse.json({message : "Please login to create a blog"}, {status: 401});
         }
 
-        const {title, content, category} = await req.json();
+        const {title, content, category, generatedByAI} = await req.json();
 
         if(!title){
              return NextResponse.json({ success: false, message: "Title is required" },{ status: 400 }
@@ -33,6 +33,7 @@ export async function POST(req){
         const newBlog = new Blog({
             title,
             content,
+            generatedByAI: Boolean(generatedByAI),
             views : 0,
             like : 0,
             disLike : 0,

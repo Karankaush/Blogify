@@ -5,9 +5,9 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import useSWR, { mutate } from "swr";
 
+
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
-export const dynamic = "force-dynamic";
 export default function ViewFeed() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -151,7 +151,7 @@ const showReset = category !== "";// show categoryBlogs if category is selected
         false
       );
 
-      setCategoryBlogs((prev) =>
+      mutateCategory((prev) =>
         prev.map((blog) =>
           blog._id === id ? { ...blog, views: (blog.views ?? 0) + 1 } : blog
         )
@@ -208,6 +208,8 @@ const showReset = category !== "";// show categoryBlogs if category is selected
           </p>
         )}
       </div>
+
+      
       
 
     </div>
@@ -287,7 +289,7 @@ function handleReset() {
               </p>
             ) : (
               <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                {categoryBlogs.map((blog, index) => (
+                {categoryBlogs.slice().reverse().map((blog, index) => (
                   <BlogCard blog={blog} index={index} key={blog._id} />
                 ))}
               </div>
@@ -299,7 +301,7 @@ function handleReset() {
               </p>
             ) : (
               <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                {blogs.map((blog, index) => (
+                {blogs.slice().reverse().map((blog, index) => (
                   <BlogCard blog={blog} index={index} key={blog._id} />
                 ))}
               </div>

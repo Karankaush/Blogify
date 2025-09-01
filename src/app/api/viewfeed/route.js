@@ -6,7 +6,7 @@ export async function GET(){
     try{
         await connectDB();
         const allBlogs = await Blog.find();
-        console.log('req is comming')
+        // console.log('req is comming')
         return NextResponse.json({message: "All blogs fetch successfully", success : true, allBlogs},  {status : 201})
     } catch(err){
          return NextResponse.json({ success: false, error: err.message });

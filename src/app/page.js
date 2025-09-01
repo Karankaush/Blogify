@@ -10,14 +10,43 @@ export default function Home() {
   const { data: session, status } = useSession();
 
   const[error, setError] = useState('')
+  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [form, setForm] = useState({
     title: "",
     content: "",
+    generatedByAI: false    
+
+
   });
 
  const id = session?.user?.id;
  console.log(id)
+
+async function handleAiSuggest() {
+  if (!form.title.trim()) {
+    alert("⚠️ Please enter a title first!");
+    return;
+  }
+
+  setLoading(true)
+  try {
+    const res = await axios.post("/api/ai/suggest", { title: form.title });
+    if (res.data.success) {
+      setLoading(false)
+      const aiText = res.data.suggestedContent || "";
+      setForm(prev => ({
+        ...prev,
+        content: aiText,       
+        generatedByAI: true    
+      }));
+    }
+  } catch (err) {
+    console.error("AI Error:", err);
+    alert("Failed to fetch AI suggestion ❌");
+  }
+}
+
 
 
   async function handleCreateBlog(e) {
@@ -64,13 +93,14 @@ export default function Home() {
           </h3>
 
 
-          <div className="mb-5">
+          <div className="mb-5 ">
             <label
               className="block text-lg font-medium text-gray-600 mb-2"
               htmlFor="title"
             >
               Title
             </label>
+            <div  className="flex gap-3">
             <input
               type="text"
               id="title"
@@ -79,6 +109,19 @@ export default function Home() {
               onChange={(e) => setForm({ ...form, title: e.target.value })}
               placeholder="Enter your blog title"
             />
+
+            
+              <button
+          type="button"
+          onClick={handleAiSuggest}
+          disabled={loading}
+          
+          className="w-[100] bg-blue-500 text-white px-2 py-2 rounded cursor-pointer"
+        >{loading ? "Generating..." : "Search AI"}</button>
+            </div>
+            
+
+
           </div>
 
 
@@ -142,7 +185,7 @@ export default function Home() {
           <div className=" flex justify-evenly ">
             <button
               type="submit"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-lg shadow-md transition"
+              className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-lg shadow-md transition"
             >
                Create Blog
             </button>
