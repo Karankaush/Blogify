@@ -58,6 +58,7 @@ export default function LoginPage() {
 
           {/* Password */}
           <div>
+            
             <label
               htmlFor="password"
               className="block text-gray-600 font-medium mb-2"
@@ -95,7 +96,7 @@ export default function LoginPage() {
           </a>
 
           {error && (
-            <p>{error}</p>
+            <p className="text-red-400" >{error}</p>
           )}
 
 
